@@ -56,25 +56,20 @@ body::before {
 }
 
 .hero-title {
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    font-weight: 300; /* Light, elegant weight matching the screenshot */
+    font-size: clamp(1.5rem, 3.2vw, 4rem);
+    font-weight: 500; /* Light, elegant weight */
     line-height: 1.05;
     margin-bottom: 1.5rem;
     letter-spacing: -0.01em;
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    white-space: nowrap; /* Forces text to stay on a single line */
 }
 
 .title-word {
-    /* Words are now flex items inline */
-}
-
-.animated-item {
-    opacity: 0;
-    transform: translateY(20px);
-    /* Very smooth blur-reveal animation */
-    animation: smoothReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    display: inline-block; /* Keeps words inline */
+    white-space: pre;
     will-change: transform, opacity, filter;
 }
 
@@ -89,19 +84,7 @@ body::before {
     line-height: 1.6;
     font-weight: 300;
     max-width: 80%;
-}
-
-@keyframes smoothReveal {
-    0% {
-        opacity: 0;
-        transform: translateY(20px) rotate(-1deg);
-        filter: blur(4px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) rotate(0deg);
-        filter: blur(0px);
-    }
+    will-change: transform, opacity, filter;
 }
 
 .hero-right {
@@ -126,29 +109,44 @@ body::before {
     object-fit: contain;
 }
 
+.scroll-space {
+    height: 400vh; /* Adjust this to control how much scrolling is required */
+    position: relative;
+    z-index: -1;
+}
+
 @media (max-width: 900px) {
     .hero {
         flex-direction: column;
-        justify-content: center;
-        padding: 5% 5%;
+        justify-content: flex-start;
+        padding: 15% 5% 5%;
     }
     
     .hero-left {
+        flex: 0 0 auto;
         max-width: 100%;
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
         padding-right: 0;
     }
     
+    .hero-title {
+        white-space: normal; /* Allow natural wrapping on very narrow mobile screens */
+        font-size: clamp(2rem, 7vw, 3rem); /* Ensure it stays readable */
+    }
+
     .hero-description {
         max-width: 100%;
         margin: 0 auto;
+        font-size: 1.1rem;
     }
     
     .hero-right {
         width: 100%;
-        height: 50vh;
+        flex: 1;
+        height: auto;
         justify-content: center;
+        align-items: center;
     }
     
     .video-container {
