@@ -67,12 +67,13 @@ body::before {
 }
 
 .title-word {
-    display: block;
+    /* Words are now flex items inline */
 }
 
 .animated-item {
     opacity: 0;
     transform: translateY(20px);
+    /* Very smooth blur-reveal animation */
     animation: smoothReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     will-change: transform, opacity, filter;
 }
